@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:van_android_getx/features/account/login/login_page.dart';
+import 'package:van_android_getx/features/account/login_page.dart';
 
 /// 自定义请求异常父类
 class ApiException implements Exception {

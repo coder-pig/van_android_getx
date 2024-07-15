@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:van_android_getx/features/account/account_vm.dart';
 
-import '../register/register_page.dart';
-import 'login_vm.dart';
-
-class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+class RegisterPage extends StatelessWidget {
+  const RegisterPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final LoginVM loginVM = Get.put(LoginVM());
+    final AccountVM vm = Get.put(AccountVM());
     return Scaffold(
       appBar: AppBar(
-        title: const Text('登录页', style: TextStyle(color: Colors.white)),
+        title: const Text('注册页', style: TextStyle(color: Colors.white)),
         backgroundColor: Get.theme.primaryColor,
         iconTheme: const IconThemeData(color: Colors.white),
       ),
@@ -22,7 +20,7 @@ class LoginPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             TextField(
-              controller: loginVM.userNameController,
+              controller: vm.registerUserNameController,
               decoration: const InputDecoration(
                 labelText: '用户名',
                 border: OutlineInputBorder(),
@@ -30,7 +28,7 @@ class LoginPage extends StatelessWidget {
             ),
             const SizedBox(height: 20.0),
             TextField(
-              controller: loginVM.passwordController,
+              controller: vm.registerPasswordController,
               decoration: const InputDecoration(
                 labelText: '密码',
                 border: OutlineInputBorder(),
@@ -38,28 +36,26 @@ class LoginPage extends StatelessWidget {
               obscureText: true,
             ),
             const SizedBox(height: 20.0),
-            MaterialButton(
-              onPressed: loginVM.login,
-              color: Get.theme.primaryColor,
-              padding: const EdgeInsets.symmetric(vertical: 16.0),
-              child: const Text('登录', style: TextStyle(color: Colors.white)),
+            TextField(
+              controller: vm.registerReUserNameController,
+              decoration: const InputDecoration(
+                labelText: '确认密码',
+                border: OutlineInputBorder(),
+              ),
+              obscureText: true,
             ),
-            const SizedBox(height: 12.0),
-            GestureDetector(
-                child: Container(
-                  alignment: Alignment.center,
-                  padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 12.0),
-                  child: const Text("去注册", style: TextStyle(color: Colors.grey)),
-                ),
-                onTap: () {
-                  // 跳转注册页，如果注册页返回true页关闭登录页
-                  Get.to(const RegisterPage())?.then((value) {
-                    if (value == true) Get.back();
-                  });
-                })
+            const SizedBox(height: 20.0),
+            MaterialButton(
+              onPressed: vm.register,
+              color: Get.theme.primaryColor,
+              textColor: Colors.white,
+              padding: const EdgeInsets.symmetric(vertical: 16.0),
+              child: const Text('注册'),
+            ),
           ],
         ),
       ),
     );
   }
+
 }

@@ -4,7 +4,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:van_android_getx/core/services/api/exceptions.dart';
 import 'package:van_android_getx/core/utils/logger_utils.dart';
 import 'package:van_android_getx/data/model/base_response.dart';
-import 'package:van_android_getx/features/account/login/login_page.dart';
+import 'package:van_android_getx/features/account/login_page.dart';
 import 'package:van_android_getx/widgets/loading_dialog.dart';
 
 class ApiClient extends GetConnect {

@@ -11,7 +11,10 @@ import 'features/home/pages/drawer_page.dart';
 
 void main() async {
   await GetStorage.init(); // 初始化GetStorage
-  runApp(GetMaterialApp(theme: leiMuBlueTheme, initialBinding: HomeBindings(), home: const MainPage()));
+  runApp(GetMaterialApp(
+      theme: leiMuBlueTheme,
+      initialBinding: HomeBindings(),
+      home: const MainPage()));
 }
 
 class MainPage extends StatelessWidget {
