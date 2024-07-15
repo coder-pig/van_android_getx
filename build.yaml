@@ -1,0 +1,8 @@
+targets:
+  $default:
+    builders:
+      # 全局配置json_serializable库省去重复写注解
+      json_serializable:
+        options:
+          explicit_to_json: true  # toJson()时将嵌套的对象也转换为Map类型而非引用
+          include_if_null: false  # toJson()时忽略值为null的字段
