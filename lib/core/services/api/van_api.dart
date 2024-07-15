@@ -4,10 +4,14 @@ import 'package:van_android_getx/data/model/account_register.dart';
 import 'package:van_android_getx/data/model/base_response.dart';
 import 'package:van_android_getx/data/model/account_info.dart';
 import 'package:van_android_getx/data/model/home_article_info.dart';
+import 'package:van_android_getx/data/model/integral.dart';
 
 import 'api_client.dart';
 
 class VanApi {
+  // 是否处于登录状态
+  static bool isLogin() => Get.find<ApiClient>().isLogin;
+
   // 更新Cookies
   static updateCookies(String cookies) => Get.find<ApiClient>().updateCookies(cookies);
 
@@ -20,8 +24,8 @@ class VanApi {
       .postX("user/register", query: req.toJson(), fromJsonT: (json) => AccountInfo.fromJson(json));
 
   // 查询积分
-  static Future<DataResponse<String?>> requestCoin() =>
-      Get.find<ApiClient>().getX("lg/coin/userinfo/json", fromJsonT: (json) => json);
+  static Future<DataResponse<Integral?>> requestCoin() =>
+      Get.find<ApiClient>().getX("lg/coin/userinfo/json", fromJsonT: (json) => Integral.fromJson(json));
 
   // 首页文章
   static Future<DataResponse<HomeArticleInfo?>> homeArticleList(int currentPage) =>

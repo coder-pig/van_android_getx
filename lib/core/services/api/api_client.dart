@@ -10,6 +10,8 @@ import 'package:van_android_getx/widgets/loading_dialog.dart';
 class ApiClient extends GetConnect {
   String? cookies;
 
+  bool get isLogin => null != cookies && cookies!.isNotEmpty;
+
   @override
   void onInit() async {
     httpClient.baseUrl = "https://www.wanandroid.com/";
@@ -63,7 +65,7 @@ class ApiClient extends GetConnect {
           // 不为 0 代表请求错误，抛异常等下统一处理
           default:
             // 错误码为-1001说明是访问了需要登录的接口但处于未登录状态，关闭加载弹窗，清空Cookies，跳转登录页
-            if(responseObject['errorCode'] == -1001) {
+            if (responseObject['errorCode'] == -1001) {
               if (Get.isDialogOpen == true) Get.back();
               updateCookies(null);
               Get.to(const LoginPage());
