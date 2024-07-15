@@ -3,9 +3,8 @@ import 'package:get/get_connect/http/src/request/request.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:van_android_getx/core/services/api/exceptions.dart';
 import 'package:van_android_getx/core/utils/logger_utils.dart';
-import 'package:van_android_getx/core/utils/sp_utils.dart';
-import 'package:van_android_getx/data/model/account_info.dart';
 import 'package:van_android_getx/data/model/base_response.dart';
+import 'package:van_android_getx/features/account/login/login_page.dart';
 import 'package:van_android_getx/widgets/loading_dialog.dart';
 
 class ApiClient extends GetConnect {
@@ -17,7 +16,6 @@ class ApiClient extends GetConnect {
     httpClient.timeout = const Duration(seconds: 30);
     // 读取本地存储的Cookie
     cookies = Get.find<GetStorage>().read("Cookie");
-    LogUtil.d("本地暂存的Cookie: $cookies");
     // 添加请求拦截器,设置Cookie
     httpClient.addRequestModifier<void>((request) {
       if (cookies != null) {
@@ -62,8 +60,14 @@ class ApiClient extends GetConnect {
             } else {
               throw ApiException(-1, "未知响应类型：$R");
             }
-          // 不为 0 代表请求错误，直接抛异常等下统一处理
+          // 不为 0 代表请求错误，抛异常等下统一处理
           default:
+            // 错误码为-1001说明是访问了需要登录的接口但处于未登录状态，关闭加载弹窗，清空Cookies，跳转登录页
+            if(responseObject['errorCode'] == -1001) {
+              if (Get.isDialogOpen == true) Get.back();
+              updateCookies(null);
+              Get.to(const LoginPage());
+            }
             throw ApiException(responseObject['errorCode'], responseObject['errorMsg']);
         }
       } else {
@@ -111,7 +115,8 @@ class ApiClient extends GetConnect {
           D Function(dynamic json)? fromJsonT}) =>
       _performRequestX(() => get(url, contentType: contentType, headers: headers, query: query), fromJsonT);
 
-  void updateCookies(String cookies) {
+  void updateCookies(String? cookies) {
     this.cookies = cookies;
+    Get.find<GetStorage>().write("Cookie", cookies);
   }
 }
