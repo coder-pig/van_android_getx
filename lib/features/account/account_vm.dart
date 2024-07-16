@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:van_android_getx/core/services/api/api_client.dart';
 import 'package:van_android_getx/core/services/api/van_api.dart';
+import 'package:van_android_getx/core/utils/logger_utils.dart';
 import 'package:van_android_getx/core/utils/toast_utils.dart';
 import 'package:van_android_getx/data/model/account_info.dart';
 import 'package:van_android_getx/data/model/account_login.dart';
@@ -27,6 +28,8 @@ class AccountVM extends GetxController {
     final password = loginPasswordController.text;
     if (username.isNotEmpty && password.isNotEmpty) {
       var result = await VanApi.login(AccountLoginReq(username, password));
+      loginUserNameController.text = "";
+      loginPasswordController.text = "";
       parseAccountInfo(result);
     } else {
       showToast(msg: "用户名或密码不能为空");
@@ -48,6 +51,13 @@ class AccountVM extends GetxController {
     } else {
       showToast(msg: "用户名或密码不能为空");
     }
+  }
+
+  // 退出登录
+  void logout() {
+    accountInfo.value = null;
+    apiClient.updateCookies(null);
+    showToast(msg: "退出登录成功");
   }
 
   // 解析用户信息的通用处理方法
@@ -77,13 +87,11 @@ class AccountVM extends GetxController {
   @override
   void onClose() {
     super.onClose();
+    LogUtil.e("销毁了");
     loginUserNameController.dispose();
     loginPasswordController.dispose();
     registerUserNameController.dispose();
     registerPasswordController.dispose();
     registerReUserNameController.dispose();
   }
-
-
-
 }

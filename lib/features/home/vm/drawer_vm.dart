@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:van_android_getx/core/services/api/van_api.dart';
 import 'package:van_android_getx/core/utils/toast_utils.dart';
@@ -11,22 +10,11 @@ class DrawerVm extends GetxController {
     final result = await VanApi.requestCoin();
     if (result.error == null) {
       Get.find<AccountVM>().accountInfo.update((accountInfo) {
-        accountInfo?.coinCount = result.data!.coinCount + 100;
-        showToast(msg: "更新成功");
+        accountInfo?.coinCount = result.data!.coinCount;
+        showToast(msg: "积分刷新成功");
       });
-      // 成功
     } else {
-      // 失败
+      showToast(msg: result.errorMsg);
     }
   }
-
-
-  @override
-  void onInit() {
-    super.onInit();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      fetchCoin();
-    });
-  }
-
 }

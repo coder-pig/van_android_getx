@@ -4,6 +4,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:van_android_getx/core/services/api/exceptions.dart';
 import 'package:van_android_getx/core/utils/logger_utils.dart';
 import 'package:van_android_getx/data/model/base_response.dart';
+import 'package:van_android_getx/features/account/account_vm.dart';
 import 'package:van_android_getx/features/account/login_page.dart';
 import 'package:van_android_getx/widgets/loading_dialog.dart';
 
@@ -22,6 +23,10 @@ class ApiClient extends GetConnect {
     httpClient.addRequestModifier<void>((request) {
       if (cookies != null) {
         request.headers['Cookie'] = cookies!;
+      } else {
+        if(request.headers.containsKey("Cookie")) {
+          request.headers.remove("Cookie");
+        }
       }
       return request;
     });
@@ -68,6 +73,7 @@ class ApiClient extends GetConnect {
             if (responseObject['errorCode'] == -1001) {
               if (Get.isDialogOpen == true) Get.back();
               updateCookies(null);
+              Get.find<AccountVM>().accountInfo.value = null;
               Get.to(const LoginPage());
             }
             throw ApiException(responseObject['errorCode'], responseObject['errorMsg']);
