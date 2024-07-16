@@ -4,6 +4,7 @@ import 'package:van_android_getx/data/model/account_register.dart';
 import 'package:van_android_getx/data/model/base_response.dart';
 import 'package:van_android_getx/data/model/account_info.dart';
 import 'package:van_android_getx/data/model/home_article_info.dart';
+import 'package:van_android_getx/data/model/home_banner_info.dart';
 import 'package:van_android_getx/data/model/integral.dart';
 
 import 'api_client.dart';
@@ -30,4 +31,8 @@ class VanApi {
   // 首页文章
   static Future<DataResponse<HomeArticleInfo?>> homeArticleList(int currentPage) =>
       Get.find<ApiClient>().getX("article/list/$currentPage/json", fromJsonT: (json) => HomeArticleInfo.fromJson(json));
+
+  // 首页Banner
+  static Future<ListResponse<HomeBannerInfo>> homeBanner() =>
+      Get.find<ApiClient>().getX("banner/json", fromJsonT: (json) => HomeBannerInfo.fromJson(json));
 }
