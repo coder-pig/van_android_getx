@@ -4,9 +4,9 @@ import 'package:van_android_getx/core/services/api/van_api.dart';
 import 'package:van_android_getx/core/utils/toast_utils.dart';
 import 'package:van_android_getx/data/model/home_article_info.dart';
 
-class HomePageVM extends GetxController {
+class MainVM extends GetxController {
   var tabIndex = 0.obs;
-  var indexPageController = PageController(initialPage: 0);
+  var mainPageController = PageController(initialPage: 0);
 
   // 列表
   var homeArticleInfoItems = List<ArticleInfo>.empty(growable: true).obs;
@@ -37,7 +37,7 @@ class HomePageVM extends GetxController {
 
   @override
   void onClose() {
-    indexPageController.dispose();
+    mainPageController.dispose();
     super.onClose();
   }
 }

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:van_android_getx/features/home/pages/home_page.dart';
 import 'package:van_android_getx/wx_article_page.dart';
 
 import '../../../other_page.dart';
-import '../pages/home_page.dart';
-import '../vm/home_page_vm.dart';
+import '../main_vm.dart';
 
 
 class IndexContainerWidget extends StatelessWidget {
@@ -12,17 +12,17 @@ class IndexContainerWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final HomePageVM vm = Get.find<HomePageVM>();
+    final MainVM vm = Get.find<MainVM>();
     return Expanded(
         child: PageView(
-          controller: vm.indexPageController,
+          controller: vm.mainPageController,
           onPageChanged: (index) {
             vm.tabIndex.value = index;
           },
           children: const <Widget>[
-            HomePage(key: PageStorageKey("home")),
-            WxArticlePage(key: PageStorageKey("wx_article")),
-            OtherPage(key: PageStorageKey("other"))
+            HomePage(),
+            WxArticlePage(),
+            OtherPage()
           ],
         ));
   }

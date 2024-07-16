@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:van_android_getx/features/home/vm/home_page_vm.dart';
+
+import '../main_vm.dart';
 
 class IndexBottomBarWidget extends StatelessWidget {
   const IndexBottomBarWidget({super.key});
 
   @override
-  Widget build(BuildContext context) => GetX<HomePageVM>(builder: (vm) {
+  Widget build(BuildContext context) => GetX<MainVM>(builder: (vm) {
         // BottomNavigationBar 切换选中的tab需要触发刷新，所以要可观察组件包裹
         return BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
           onTap: (index) {
             vm.tabIndex.value = index;
-            vm.indexPageController.jumpToPage(index);
+            vm.mainPageController.jumpToPage(index);
           },
           // 选中时的颜色
           selectedItemColor: Get.theme.primaryColor,
