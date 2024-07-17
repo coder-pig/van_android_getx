@@ -28,8 +28,6 @@ class AccountVM extends GetxController {
     final password = loginPasswordController.text;
     if (username.isNotEmpty && password.isNotEmpty) {
       var result = await VanApi.login(AccountLoginReq(username, password));
-      loginUserNameController.text = "";
-      loginPasswordController.text = "";
       parseAccountInfo(result);
     } else {
       showToast(msg: "用户名或密码不能为空");
@@ -71,6 +69,8 @@ class AccountVM extends GetxController {
         Get.find<GetStorage>().write("Cookie", cookies);
       }
       if (isLogin == true) {
+        loginUserNameController.text = "";
+        loginPasswordController.text = "";
         showToast(msg: "【${result.data!.nickname}】登录成功");
         Get.back();
       } else {

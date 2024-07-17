@@ -6,6 +6,8 @@ import 'package:van_android_getx/data/model/account_info.dart';
 import 'package:van_android_getx/data/model/home_article_info.dart';
 import 'package:van_android_getx/data/model/home_banner_info.dart';
 import 'package:van_android_getx/data/model/integral.dart';
+import 'package:van_android_getx/data/model/wx_account_info.dart';
+import 'package:van_android_getx/data/model/wx_article_list.dart';
 
 import 'api_client.dart';
 
@@ -35,4 +37,14 @@ class VanApi {
   // 首页Banner
   static Future<ListResponse<HomeBannerInfo>> homeBanner() =>
       Get.find<ApiClient>().getX("banner/json", fromJsonT: (json) => HomeBannerInfo.fromJson(json));
+
+  // 公众号列表
+  static Future<ListResponse<WxAccountInfo>> wxAccounts() =>
+      Get.find<ApiClient>().getX("wxarticle/chapters/json", fromJsonT: (json) => WxAccountInfo.fromJson(json));
+
+  // 公众号文章列表
+  static Future<DataResponse<WxArticleList>> wxArticleList(int wxId, int currentPage) =>
+      Get.find<ApiClient>().getX("wxarticle/list/$wxId/$currentPage/json", fromJsonT: (json) => WxArticleList.fromJson(json));
+
+
 }

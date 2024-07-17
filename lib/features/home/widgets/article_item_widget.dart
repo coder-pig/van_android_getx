@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:van_android_getx/features/account/login_page.dart';
 import 'package:van_android_getx/features/browser/browser_page.dart';
 
 import '../../../data/model/home_article_info.dart';
