@@ -16,7 +16,7 @@ class IndexBottomBarWidget extends StatelessWidget {
             vm.mainPageController.jumpToPage(index);
           },
           // 选中时的颜色
-          selectedItemColor: Get.theme.primaryColor,
+          selectedItemColor: Theme.of(context).primaryColor,
           // 未选中时的颜色
           unselectedItemColor: Colors.grey,
           // 选中的label是否展示

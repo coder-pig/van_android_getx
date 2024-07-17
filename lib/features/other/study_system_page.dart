@@ -42,7 +42,7 @@ class StudySystemPage extends StatelessWidget {
                       controller: scrollController,
                       itemCount: vm.studySystemItems.length,
                       itemBuilder: (context, index) {
-                        return _generateNaviItem(vm.studySystemItems[index]);
+                        return _generateNaviItem(vm.studySystemItems[index], context);
                       });
                 })));
       } else {
@@ -52,7 +52,7 @@ class StudySystemPage extends StatelessWidget {
   }
 
   // 生成学习体系列表项
-  Widget _generateNaviItem(StudySystemInfo info) {
+  Widget _generateNaviItem(StudySystemInfo info, BuildContext context) {
     return GestureDetector(
         child: Row(children: [
           Expanded(
@@ -60,7 +60,8 @@ class StudySystemPage extends StatelessWidget {
             Padding(
                 padding: const EdgeInsets.only(left: 12, top: 12),
                 child: Text("${info.name}",
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Get.theme.primaryColor))),
+                    style:
+                        TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Theme.of(context).primaryColor))),
             Padding(
                 padding: const EdgeInsets.only(left: 12, top: 10, bottom: 10),
                 child: info.children != null

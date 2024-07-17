@@ -13,7 +13,7 @@ class LoginPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('登录页', style: TextStyle(color: Colors.white)),
-        backgroundColor: Get.theme.primaryColor,
+        backgroundColor: Theme.of(context).primaryColor,
         iconTheme: const IconThemeData(color: Colors.white),
       ),
       body: Padding(
@@ -40,7 +40,7 @@ class LoginPage extends StatelessWidget {
             const SizedBox(height: 20.0),
             MaterialButton(
               onPressed: vm.login,
-              color: Get.theme.primaryColor,
+              color: Theme.of(context).primaryColor,
               padding: const EdgeInsets.symmetric(vertical: 16.0),
               child: const Text('登录', style: TextStyle(color: Colors.white)),
             ),

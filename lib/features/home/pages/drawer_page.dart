@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:van_android_getx/features/account/account_vm.dart';
 import 'package:van_android_getx/features/account/login_page.dart';
 import 'package:van_android_getx/features/home/vm/drawer_vm.dart';
+import 'package:van_android_getx/features/setting/setting_page.dart';
 
 class DrawerPage extends StatelessWidget {
   const DrawerPage({super.key});
@@ -16,8 +17,8 @@ class DrawerPage extends StatelessWidget {
         padding: EdgeInsets.zero,
         children: <Widget>[
           DrawerHeader(
-            decoration: const BoxDecoration(
-              color: Color(0xFF5A78EA),
+            decoration: BoxDecoration(
+              color: Theme.of(context).primaryColor,
             ),
             child: Column(
               children: [
@@ -49,9 +50,12 @@ class DrawerPage extends StatelessWidget {
                 title: Text('我的积分：【${accountVM.accountInfo.value?.coinCount ?? "点击刷新"}】'),
                 onTap: drawerVm.fetchCoin,
               )),
-          const ListTile(
-            leading: Icon(Icons.settings),
-            title: Text('系统设置'),
+          ListTile(
+            leading: const Icon(Icons.settings),
+            title: const Text('系统设置'),
+            onTap: () {
+              Get.to(const SettingPage());
+            },
           ),
           Obx(() => Visibility(
               visible: accountVM.accountInfo.value != null,

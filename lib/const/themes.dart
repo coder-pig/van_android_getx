@@ -13,3 +13,17 @@ final ThemeData leiMuBlueTheme = ThemeData.light().copyWith(
     ),
   ),
 );
+
+const Color laMuPink = Color(0xFFFFB6C1);
+
+final ThemeData laMuPinkTheme = ThemeData.light().copyWith(
+  primaryColor: laMuPink,
+  colorScheme: ColorScheme.fromSeed(seedColor: laMuPink),
+  appBarTheme: const AppBarTheme(
+    backgroundColor: laMuPink,
+    titleTextStyle: TextStyle(
+      color: Colors.white,
+      fontSize: 20,
+    ),
+  ),
+);

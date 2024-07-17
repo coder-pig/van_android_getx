@@ -11,7 +11,7 @@ class RegisterPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('注册页', style: TextStyle(color: Colors.white)),
-        backgroundColor: Get.theme.primaryColor,
+        backgroundColor: Theme.of(context).primaryColor,
         iconTheme: const IconThemeData(color: Colors.white),
       ),
       body: Padding(
@@ -47,7 +47,7 @@ class RegisterPage extends StatelessWidget {
             const SizedBox(height: 20.0),
             MaterialButton(
               onPressed: vm.register,
-              color: Get.theme.primaryColor,
+              color: Theme.of(context).primaryColor,
               textColor: Colors.white,
               padding: const EdgeInsets.symmetric(vertical: 16.0),
               child: const Text('注册'),

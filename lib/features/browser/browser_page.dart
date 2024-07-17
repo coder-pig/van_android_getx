@@ -30,7 +30,7 @@ class BrowserPage extends StatelessWidget {
     var isLoading = true.obs; // 网页是否正在加载中
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Get.theme.primaryColor,
+        backgroundColor: Theme.of(context).primaryColor,
         title: const Text('Van ♂ Android'),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.white),
