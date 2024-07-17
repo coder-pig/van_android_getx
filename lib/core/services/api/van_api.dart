@@ -6,6 +6,7 @@ import 'package:van_android_getx/data/model/account_info.dart';
 import 'package:van_android_getx/data/model/home_article_info.dart';
 import 'package:van_android_getx/data/model/home_banner_info.dart';
 import 'package:van_android_getx/data/model/integral.dart';
+import 'package:van_android_getx/data/model/navi_info.dart';
 import 'package:van_android_getx/data/model/wx_account_info.dart';
 import 'package:van_android_getx/data/model/wx_article_list.dart';
 
@@ -46,5 +47,8 @@ class VanApi {
   static Future<DataResponse<WxArticleList>> wxArticleList(int wxId, int currentPage) =>
       Get.find<ApiClient>().getX("wxarticle/list/$wxId/$currentPage/json", fromJsonT: (json) => WxArticleList.fromJson(json));
 
+  // 导航数据
+  static Future<ListResponse<NaviInfo>> navi() =>
+      Get.find<ApiClient>().getX("navi/json", fromJsonT: (json) => NaviInfo.fromJson(json));
 
 }

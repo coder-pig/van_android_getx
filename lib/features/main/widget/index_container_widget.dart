@@ -4,7 +4,7 @@ import 'package:van_android_getx/features/home/pages/home_page.dart';
 import 'package:van_android_getx/features/wx/wx_page.dart';
 import 'package:van_android_getx/widgets/keep_alive_wrapper.dart';
 
-import '../../../other_page.dart';
+import '../../other/other_page.dart';
 import '../main_vm.dart';
 
 class IndexContainerWidget extends StatelessWidget {

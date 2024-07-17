@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <base-config cleartextTrafficPermitted="true" />
+    <!--    不写默认是所有域名允许，如果想配置特定域名允许，可以添加设置-->
+    <!--    <domain includeSubdomains="true">yourdomain.com</domain>-->
+</network-security-config>
