@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'navi_page.dart';
+import 'study_system_page.dart';
 
 class OtherPage extends StatelessWidget {
   const OtherPage({super.key});
@@ -11,7 +12,7 @@ class OtherPage extends StatelessWidget {
       child: Column(
         children: [
           TabBar(tabs: [Tab(text: "网站导航"), Tab(text: "学习体系")]),
-          Expanded(child: TabBarView(children: [NaviPage(), Text("学习体系")]))
+          Expanded(child: TabBarView(children: [NaviPage(), StudySystemPage()]))
         ],
       ));
 }

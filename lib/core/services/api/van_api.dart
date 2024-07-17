@@ -7,6 +7,7 @@ import 'package:van_android_getx/data/model/home_article_info.dart';
 import 'package:van_android_getx/data/model/home_banner_info.dart';
 import 'package:van_android_getx/data/model/integral.dart';
 import 'package:van_android_getx/data/model/navi_info.dart';
+import 'package:van_android_getx/data/model/study_system_info.dart';
 import 'package:van_android_getx/data/model/wx_account_info.dart';
 import 'package:van_android_getx/data/model/wx_article_list.dart';
 
@@ -50,5 +51,10 @@ class VanApi {
   // 导航数据
   static Future<ListResponse<NaviInfo>> navi() =>
       Get.find<ApiClient>().getX("navi/json", fromJsonT: (json) => NaviInfo.fromJson(json));
+
+  // 学习体系
+  static Future<ListResponse<StudySystemInfo>> studySystem() =>
+      Get.find<ApiClient>().getX("tree/json", fromJsonT: (json) => StudySystemInfo.fromJson(json));
+
 
 }
