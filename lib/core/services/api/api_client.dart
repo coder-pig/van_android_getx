@@ -6,7 +6,7 @@ import 'package:van_android_getx/core/utils/logger_utils.dart';
 import 'package:van_android_getx/data/model/base_response.dart';
 import 'package:van_android_getx/features/account/account_vm.dart';
 import 'package:van_android_getx/features/account/login_page.dart';
-import 'package:van_android_getx/widgets/loading_dialog.dart';
+import 'package:van_android_getx/widgets/custom_dialog.dart';
 
 class ApiClient extends GetConnect {
   String? cookies;

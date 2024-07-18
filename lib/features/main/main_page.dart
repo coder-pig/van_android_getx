@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:van_android_getx/widgets/loading_dialog.dart';
+import 'package:flutter/services.dart';
+import 'package:van_android_getx/widgets/custom_dialog.dart';
 
 import '../home/pages/drawer_page.dart';
 import 'widget/index_bottom_bar_widget.dart';
@@ -10,8 +11,18 @@ class MainPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-        onWillPop: showExitConfirmDialog,
+    return PopScope(
+        canPop: false,
+        onPopInvoked: (didPop) async {
+          if (didPop) {
+            return;
+          } else {
+            final bool shouldPop = await showExitConfirmDialog();
+            if (shouldPop) {
+              SystemNavigator.pop();
+            }
+          }
+        },
         child: Scaffold(
             appBar: AppBar(title: const Text("Van ♂ Android")),
             body: const Column(

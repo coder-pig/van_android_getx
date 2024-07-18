@@ -26,22 +26,22 @@ void showLoadingDialog({bool canPop = true}) {
       barrierDismissible: false);
 }
 
-Future<bool> showExitConfirmDialog() async {
-  return await Get.dialog(
-        AlertDialog(
-          title: const Text('退出应用'),
-          content: const Text('你确定要退出应用吗？'),
-          actions: [
-            TextButton(
-              onPressed: () => Get.back(result: false), // 不退出应用
-              child: const Text('取消'),
-            ),
-            TextButton(
-              onPressed: () => Get.back(result: true), // 确认退出应用
-              child: const Text('确定'),
-            ),
-          ],
-        ),
-      ) ??
-      false; // 防止点击对话框外部时返回null
-}
+/// 展示一个退出App的确认弹窗
+Future<bool> showExitConfirmDialog() async =>
+    await Get.dialog(
+      AlertDialog(
+        title: const Text('退出应用'),
+        content: const Text('你确定要退出应用吗？'),
+        actions: [
+          TextButton(
+            onPressed: () => Get.back(result: false), // 不退出应用
+            child: const Text('取消'),
+          ),
+          TextButton(
+            onPressed: () => Get.back(result: true), // 确认退出应用
+            child: const Text('确定'),
+          ),
+        ],
+      ),
+    ) ??
+    false; // 防止点击对话框外部时返回null

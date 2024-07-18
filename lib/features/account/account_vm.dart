@@ -87,7 +87,6 @@ class AccountVM extends GetxController {
   @override
   void onClose() {
     super.onClose();
-    LogUtil.e("销毁了");
     loginUserNameController.dispose();
     loginPasswordController.dispose();
     registerUserNameController.dispose();
